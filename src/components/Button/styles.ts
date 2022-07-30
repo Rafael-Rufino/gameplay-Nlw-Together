@@ -14,7 +14,8 @@ export const ButtonContainer = styled(RectButton)`
 `;
 export const Text = styled.Text`
   flex: 1;
-  font-size: 15px;
+  font-size: 18px;
+  font-family: ${theme.fonts.title700};
   color: ${theme.colors.heading};
   text-align: center;
 `;
