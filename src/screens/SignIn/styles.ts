@@ -5,7 +5,6 @@ export const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: #0d133d;
 `;
 
 export const BackgroundImg = styled.Image`
@@ -14,9 +13,6 @@ export const BackgroundImg = styled.Image`
 `;
 
 export const Content = styled.View`
-  width: 100%;
-  justify-content: center;
-  align-items: center;
   margin-top: -40px;
   padding-horizontal: 50px;
 `;
@@ -24,13 +20,16 @@ export const Content = styled.View`
 export const Title = styled.Text`
   text-align: center;
   color: ${theme.colors.heading};
+  font-family: ${theme.fonts.title700};
   font-size: 40px;
+  line-height: 40px;
   margin-bottom: 16px;
 `;
 
 export const SubTitle = styled.Text`
   text-align: center;
   color: ${theme.colors.heading};
+  font-family: ${theme.fonts.text500};
   margin-bottom: 60px;
   font-size: 16px;
   line-height: 24px;
