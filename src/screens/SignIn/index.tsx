@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { Container, Content, Title, SubTitle, BackgroundImg } from "./styles";
 import IllustrationImg from "../../assets/illustration.png";
-import { Button } from "../../components/Button";
+import { ButtonIcon } from "../../components/ButtonIcon";
 import { Background } from "../../components/Background";
 
 export function SignIn() {
@@ -24,7 +24,7 @@ export function SignIn() {
             Crie grupos para jogar seus games{"\n"}
             favoritos com seus amigos
           </SubTitle>
-          <Button title="Entrar com discord" onPress={handleSignIn} />
+          <ButtonIcon title="Entrar com discord" onPress={handleSignIn} />
         </Content>
       </Container>
     </Background>
