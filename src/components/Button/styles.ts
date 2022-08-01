@@ -15,21 +15,7 @@ export const ButtonContainer = styled(RectButton)`
 export const Text = styled.Text`
   flex: 1;
   font-size: 18px;
-  font-family: ${theme.fonts.title700};
+  font-family: ${theme.fonts.title500};
   color: ${theme.colors.heading};
   text-align: center;
-`;
-
-export const IconWrapper = styled.View`
-  width: 56px;
-  height: 56px;
-  justify-content: center;
-  align-items: center;
-  border-right-width: 1px;
-  border-color: ${theme.colors.line};
-`;
-
-export const ImageIcon = styled.Image`
-  width: 24px;
-  height: 18px;
 `;
