@@ -3,6 +3,9 @@ export declare global {
     interface RootParamList {
       Home: undefined;
       SignIn: undefined;
+      AppointmentDetails: undefined;
+      AppointmentCreate: undefined;
+      Guilds: undefined;
       details: { orderId: string };
     }
   }
