@@ -12,4 +12,6 @@ export const TextInputContainer = styled(TextInput)`
   font-size: 14px;
   margin-right: 4px;
   text-align: center;
+  border-width: 1px;
+  border-color: ${theme.colors.secondary50};
 `;
