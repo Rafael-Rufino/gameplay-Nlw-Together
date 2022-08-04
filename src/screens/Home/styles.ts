@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { StyleSheet } from "react-native";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 
 export const Container = styled.View`
@@ -14,13 +15,13 @@ export const Header = styled.View`
   margin-bottom: 42px;
 `;
 
-export const Content = styled.View`
-  margin-top: 42px;
-`;
-
-export const Text = styled.Text``;
-
 export const CardList = styled.View`
   margin-horizontal: 24px;
   margin-top: 24px;
 `;
+
+export const styles = StyleSheet.create({
+  matches: {
+    marginHorizontal: 24,
+  },
+});

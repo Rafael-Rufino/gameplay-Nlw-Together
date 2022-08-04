@@ -10,7 +10,7 @@ import { ListDivider } from "../../components/ListDivider";
 import { ListHeader } from "../../components/ListHeader";
 import { Profile } from "../../components/Profile";
 
-import { Container, Header, Content, Text, CardList } from "./styles";
+import { Container, Header, styles } from "./styles";
 
 export function Home() {
   const [category, setCategory] = useState("");
@@ -69,21 +69,19 @@ export function Home() {
           categorySelected={category}
           setCategory={handleCategorySelect}
         />
+        <ListHeader title="Partidas agendadas" subTitle="Total 6" />
 
-        <Content>
-          <ListHeader title="Partidas agendadas" subTitle="Total 6" />
-        </Content>
-        <CardList>
-          <FlatList
-            data={appointments}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <Appointment data={item} onPress={handleAppointmentDetails} />
-            )}
-            ItemSeparatorComponent={() => <ListDivider />}
-            showsVerticalScrollIndicator={false}
-          />
-        </CardList>
+        <FlatList
+          style={styles.matches}
+          data={appointments}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <Appointment data={item} onPress={handleAppointmentDetails} />
+          )}
+          ItemSeparatorComponent={() => <ListDivider />}
+          contentContainerStyle={{ paddingBottom: 69 }}
+          showsVerticalScrollIndicator={false}
+        />
       </Container>
     </Background>
   );
