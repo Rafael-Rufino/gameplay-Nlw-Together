@@ -6,6 +6,7 @@ import theme from "../../global/styles/theme";
 
 import { Container, Title, Content } from "./styles";
 import { useNavigation } from "@react-navigation/native";
+import { View } from "react-native";
 
 type Props = {
   title: string;
@@ -25,7 +26,7 @@ export function Header({ title, action }: Props) {
         <Feather name="arrow-left" size={24} color={heading} />
       </BorderlessButton>
       <Title>{title}</Title>
-      {action && <Content>{action}</Content>}
+      {action ? <Content>{action}</Content> : <View style={{ width: 24 }} />}
     </Container>
   );
 }
