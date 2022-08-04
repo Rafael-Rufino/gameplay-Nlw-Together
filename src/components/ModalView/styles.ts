@@ -18,5 +18,4 @@ export const Bar = styled.View`
   background-color: ${theme.colors.secondary30};
   align-self: center;
   margin-top: 13px;
-  margin-bottom: 103px;
 `;
