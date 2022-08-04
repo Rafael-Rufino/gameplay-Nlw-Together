@@ -32,7 +32,7 @@ import { Guilds } from "../Guilds";
 import { GuildProps } from "../../components/Guild/interface";
 
 export function AppointmentCreate() {
-  const [category, setCategory] = useState();
+  const [category, setCategory] = useState("");
   const [openGuildsModa, setOpenGuildsModal] = useState(false);
   const [guild, setGuild] = useState<GuildProps>({} as GuildProps);
 
@@ -45,20 +45,28 @@ export function AppointmentCreate() {
     setOpenGuildsModal(false);
   }
 
+  function handleCloseModal() {
+    setOpenGuildsModal(false);
+  }
+
+  function handleCategorySelect(categoryId: string) {
+    setCategory(categoryId);
+  }
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <ScrollView>
-        <Background>
+      <Background>
+        <ScrollView>
           <Header title="Agendar partida" />
           <Label style={{ marginLeft: 24, marginTop: 36, marginBottom: 18 }}>
             Categoria
           </Label>
           <CategorySelect
             hasCheckBox
-            setCategory={setCategory}
+            setCategory={handleCategorySelect}
             categorySelected={category}
           />
           <Form>
@@ -110,9 +118,9 @@ export function AppointmentCreate() {
               <Button title="Agendar" />
             </Footer>
           </Form>
-        </Background>
-      </ScrollView>
-      <ModalView visible={openGuildsModa}>
+        </ScrollView>
+      </Background>
+      <ModalView visible={openGuildsModa} closeModal={handleCloseModal}>
         <Guilds handleGuildSelect={handleGuildSelect} />
       </ModalView>
     </KeyboardAvoidingView>
