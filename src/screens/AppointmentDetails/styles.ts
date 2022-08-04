@@ -7,7 +7,6 @@ import theme from "../../global/styles/theme";
 export const Banner = styled(ImageBackground)`
   width: 100%;
   height: 234px;
-  margin-bottom: 30px;
 `;
 
 export const BannerContent = styled.View`
@@ -27,6 +26,7 @@ export const SubTitle = styled.Text`
   font-size: 14px;
   font-family: ${theme.fonts.title500};
   color: ${theme.colors.heading};
+  line-height: 21px;
 `;
 
 export const Wrapper = styled.View`
@@ -38,6 +38,5 @@ export const Wrapper = styled.View`
 export const styles = StyleSheet.create({
   Members: {
     marginLeft: 24,
-    marginTop: 28,
   },
 });
