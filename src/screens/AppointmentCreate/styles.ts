@@ -32,9 +32,10 @@ export const SelectBody = styled.View`
 export const Image = styled.View`
   width: 64px;
   height: 68px;
-  background-color: ${theme.colors.secondary50};
+  background-color: ${theme.colors.secondary40};
   border-radius: 8px;
   border-width: 1px;
+  border-color: ${theme.colors.secondary50};
 `;
 
 export const Field = styled.View`
