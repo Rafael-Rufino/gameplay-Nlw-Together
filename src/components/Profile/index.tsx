@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuth } from "../../hooks/auth";
 import { Avatar } from "../Avatar";
 
 import {
@@ -11,13 +12,16 @@ import {
 } from "./styles";
 
 export function Profile() {
+  const { user } = useAuth();
+  console.log(user);
+
   return (
     <Container>
-      <Avatar urlImage="https://github.com/Rafael-Rufino.png" />
+      <Avatar urlImage={user.avatar} />
       <Content>
         <User>
           <Greeting>Olá,</Greeting>
-          <Username>Rafael</Username>
+          <Username>{user.firstName}</Username>
         </User>
         <Message>Hoje é dia de vitória</Message>
       </Content>
