@@ -1,8 +1,13 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
-import { StatusBar } from "react-native";
+import { StatusBar, LogBox } from "react-native";
 import theme from "./src/global/styles/theme";
 import AppLoading from "expo-app-loading";
+
+LogBox.ignoreLogs([
+  "You are not currently signed in to Expo on your development machine.",
+  "expo-app-loading is deprecated in favor of expo-splash-screen: use SplashScreen.preventAutoHideAsync() and SplashScren.hideAsync() instead",
+]);
 
 import {
   useFonts,
@@ -16,6 +21,7 @@ import {
 } from "@expo-google-fonts/rajdhani";
 import { Routes } from "./src/routes";
 import { Background } from "./src/components/Background";
+import { AuthProvider } from "./src/hooks/auth";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -36,7 +42,9 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        <Routes />
+        <AuthProvider>
+          <Routes />
+        </AuthProvider>
       </Background>
     </ThemeProvider>
   );
