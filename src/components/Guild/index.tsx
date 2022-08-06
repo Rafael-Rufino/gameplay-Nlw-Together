@@ -17,7 +17,7 @@ import theme from "../../global/styles/theme";
 export function Guild({ data, ...rest }: IGuildProps) {
   return (
     <TouchableOpacityContainer {...rest} activeOpacity={0.7}>
-      <GuildIcon />
+      <GuildIcon guildId={data.id} iconId={data.icon} />
       <Content>
         <Header>
           <Title>{data.name}</Title>

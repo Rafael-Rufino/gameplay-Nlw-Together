@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { BorderlessButton } from "react-native-gesture-handler";
 import { Fontisto } from "@expo/vector-icons";
-import { FlatList } from "react-native";
+import { Alert, FlatList, Share, Platform } from "react-native";
 
 import theme from "../../global/styles/theme";
 
@@ -14,6 +14,7 @@ import { ListHeader } from "../../components/ListHeader";
 
 import { Member } from "../../components/Member";
 import { ListDivider } from "../../components/ListDivider";
+import * as Linking from "expo-linking";
 
 import {
   Banner,
@@ -24,53 +25,106 @@ import {
   Wrapper,
 } from "./styles";
 import { ButtonIcon } from "../../components/ButtonIcon";
+import { useRoute } from "@react-navigation/native";
+import { AppointmentProps } from "../../components/Appointment/interface";
+import { api } from "../../services/api";
+import { MemberProps } from "../../components/Member/interface";
+import { Load } from "../../components/Load";
+
+type Params = {
+  guildSelected: AppointmentProps;
+};
+
+type GuildWidget = {
+  id: string;
+  name: string;
+  instant_invite: string;
+  members: MemberProps[];
+};
 
 export function AppointmentDetails() {
-  const members = [
-    {
-      id: "1",
-      username: "Rafael",
-      avatar_url: "https://github.com/Rafael-Rufino.png",
-      status: "online",
-    },
-    {
-      id: "2",
-      username: "Rafael",
-      avatar_url: "https://github.com/Rafael-Rufino.png",
-      status: "offline",
-    },
-  ];
+  const [widget, setWidget] = useState<GuildWidget>({} as GuildWidget);
+  const [loading, setLoading] = useState(true);
+
+  const route = useRoute();
+  const { guildSelected } = route.params as Params;
+
+  async function fetchGuildWidget() {
+    try {
+      const response = await api.get(
+        `/guilds/${guildSelected.guild.id}/widget.json`
+      );
+      setWidget(response.data);
+    } catch {
+      Alert.alert(
+        "Verique as configurações do seu servidor. Será que o Widget está habilitado?"
+      );
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function handleShareInvitation() {
+    const message =
+      Platform.OS === "ios"
+        ? `Junte-se a ${guildSelected.guild.name}`
+        : widget.instant_invite;
+    Share.share({
+      message,
+      url: widget.instant_invite,
+    });
+  }
+  function handleOpenGuild() {
+    Linking.openURL(widget.instant_invite);
+  }
+
+  useEffect(() => {
+    fetchGuildWidget();
+  }, []);
+
   return (
     <Background>
       <Header
         title="Detalhes"
         action={
-          <BorderlessButton>
-            <Fontisto name="share" size={24} color={theme.colors.primary} />
-          </BorderlessButton>
+          guildSelected.guild.owner && (
+            <BorderlessButton onPress={handleShareInvitation}>
+              <Fontisto name="share" size={24} color={theme.colors.primary} />
+            </BorderlessButton>
+          )
         }
       />
 
       <Banner source={BannerImg}>
         <BannerContent>
-          <Title>Lendários</Title>
-          <SubTitle>
-            È hoje que vamos chegar ao challenger sem perder uma partida da md1
-          </SubTitle>
+          <Title>{guildSelected.guild.name}</Title>
+          <SubTitle>{guildSelected.description}</SubTitle>
         </BannerContent>
       </Banner>
-      <ListHeader title="Jogadores" subTitle="Total" />
-      <FlatList
-        data={members}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Member data={item} />}
-        ItemSeparatorComponent={() => <ListDivider isCentered />}
-        style={styles.Members}
-      />
+      {loading ? (
+        <Load />
+      ) : (
+        <>
+          {" "}
+          <ListHeader
+            title="Jogadores"
+            subTitle={`Total ${widget.members.length} `}
+          />
+          <FlatList
+            data={widget.members}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => <Member data={item} />}
+            ItemSeparatorComponent={() => <ListDivider isCentered />}
+            style={styles.Members}
+          />
+        </>
+      )}
 
-      <Wrapper>
-        <ButtonIcon title="Entrar na Partida" />
-      </Wrapper>
+      {guildSelected.guild.owner && (
+        <Wrapper>
+          <ButtonIcon title="Entrar na Partida" onPress={handleOpenGuild} />
+        </Wrapper>
+      )}
     </Background>
   );
 }
