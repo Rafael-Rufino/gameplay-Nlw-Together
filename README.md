@@ -2,7 +2,7 @@
 <h3 align="center">
     <img alt="Logo" title="#logo" width="300px" src="./.github/icon.png">
     <br><br>
-    <b> Aplicativo para lhe ajudar conecta-se e organiza eventos de jogos. Crie grupos para jogar seus games favoritos com seus amigos, esse App possui autenticação com Discord.</b>  
+    <b> Aplicativo para lhe ajudar conecta-se e organizar eventos de jogos. Crie grupos para jogar seus games favoritos com seus amigos, esse App possui autenticação com Discord.</b>  
     <br>
 </h3>
 
