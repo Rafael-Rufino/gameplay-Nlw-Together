@@ -13,7 +13,7 @@ export function Routes() {
 
   return (
     <NavigationContainer>
-      {user ? <AppRoutes /> : <SignIn />}
+      {user.id ? <AppRoutes /> : <SignIn />}
     </NavigationContainer>
   );
 }
