@@ -11,4 +11,5 @@ export type AuthContextData = {
   user: User;
   loading: boolean;
   signIn: () => Promise<void>;
+  signOut: () => Promise<void>;
 };
