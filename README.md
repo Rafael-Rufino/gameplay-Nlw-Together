@@ -22,9 +22,9 @@
  - [ ] Permite realizar o agendamento de partidas;
  - [ ] Permite filtrar as partidas por categoria;
  - [ ] Exibe se a partida foi agendada em um servidor próprio (anfitrião) ou em servidores de outros (convidado);
- - [ ]Compartilha o convite para ingressar no servidor do usuário;
- - [ ]Permite redirecionar o usuário para o seu próprio servidor;
- - [ ]Disponibiliza a função de Logout.
+ - [ ] Compartilha o convite para ingressar no servidor do usuário;
+ - [ ] Permite redirecionar o usuário para o seu próprio servidor;
+ - [ ] Disponibiliza a função de Logout.
 
 
 <a id="tecnologias-utilizadas"></a>
